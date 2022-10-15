@@ -1,0 +1,16 @@
+ {% extends 'base.html' %}
+
+ {% block title %}top{% endblock %}
+
+ {% block content %}
+    <div class="card">
+        <h5 class="card-header">{{ object.title }}</h5>
+        <div class="card-body">
+            <p class="card-text">{{ object.text }}</p>
+            <a href="{% url 'list-app' %}" class="btn btn-primary">一覧へ</a>
+            <a href="{% url 'update-app' object.pk %}" class="btn btn-primary">編集する</a>
+            <a href="{% url 'delete-app' object.pk %}" class="btn btn-primary">削除する</a>
+            <h6 class="card-title">{{ object.category }}</h6>
+        </div>
+    </div>
+ {% endblock content %}
