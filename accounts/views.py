@@ -5,6 +5,9 @@ from .forms import SignupForm
 from django.contrib import admin
 from app.models import Account
 
+
+ITEM_PER_PAGE = 10
+
 def favorite(request):
     return render(request, 'accounts/favorite.html')
 
