@@ -37,7 +37,7 @@ class MyUserManager(BaseUserManager):
 
 class Account(AbstractBaseUser):
     email = models.EmailField(
-        verbose_name='email address',
+        'メールアドレス',
         max_length=255,
         unique=True,
     )
@@ -68,6 +68,9 @@ class Account(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+    class Meta:
+        verbose_name = 'アカウント'
 
 
 
@@ -109,3 +112,4 @@ class App(models.Model):
     
     def __str__(self):
         return self.title
+

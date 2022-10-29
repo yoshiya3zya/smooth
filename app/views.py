@@ -9,8 +9,6 @@ from django.views.generic import (
     )
 from  .models import App
 
-
-
 class ListAppView(ListView):
     template_name = 'app/app_list.html'
     model = App
