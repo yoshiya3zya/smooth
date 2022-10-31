@@ -124,6 +124,9 @@ STATICFILES_DIRS =[
     BASE_DIR / 'accounts/argon-dashboard-master/assets'
 ]
 
+import os
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 

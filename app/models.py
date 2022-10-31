@@ -80,11 +80,20 @@ class Place(models.Model):
     address = models.CharField(max_length=128)
     access = models.CharField(max_length=128)
     floorplan = models.CharField(max_length=128)
-    image = models.CharField(max_length=128)
+    
+    def __str__(self):
+        return self.name
+
 
 class PlacePhoto(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
-    image = models.CharField(max_length=128)
+    image1 = models.ImageField(upload_to='images/')
+    image2 = models.ImageField(upload_to='images/')
+    image3 = models.ImageField(upload_to='images/')
+    image4 = models.ImageField(upload_to='images/')
+    
+    
+    
 
 class Reserve(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
