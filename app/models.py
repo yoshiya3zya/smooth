@@ -87,11 +87,14 @@ class Place(models.Model):
 
 class PlacePhoto(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
-    image1 = models.ImageField(upload_to='images/')
-    image2 = models.ImageField(upload_to='images/')
-    image3 = models.ImageField(upload_to='images/')
-    image4 = models.ImageField(upload_to='images/')
+    image1 = models.ImageField(upload_to='images/', default=None, null=True, blank=True)
+    image2 = models.ImageField(upload_to='images/', default=None, null=True, blank=True)
+    image3 = models.ImageField(upload_to='images/', default=None, null=True, blank=True)
+    image4 = models.ImageField(upload_to='images/', default=None, null=True, blank=True)
     
+
+    def __str__(self):
+        return str(self.place )
     
     
 
