@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from .forms import SignupForm
 from django.contrib import admin
-from app.models import Account
+from app.models import Account, PlacePhoto
 
 
 ITEM_PER_PAGE = 10
@@ -15,7 +15,8 @@ def completion(request):
     return render(request, 'accounts/completion.html')
 
 def mypage(request):
-    return render(request, 'accounts/mypage.html')
+    place_photo_list = PlacePhoto.objects.all()
+    return render(request, 'accounts/mypage.html', {'place_photo_list': place_photo_list})
 
 def searched(request):
     return render(request, 'accounts/searched.html')
