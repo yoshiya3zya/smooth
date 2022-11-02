@@ -63,6 +63,16 @@
       </header>
 
       <main>
+        <h2>adminで追加した写真</h2>
+        {% for place_photo in place_photo_list %}
+        <div class="mb-3">
+          <p>name: {{ place_photo.place.name }}</p>
+          <p>image1: {% if place_photo.image1 %}<img src="{{ place_photo.image1.url }}" class="img-thumbnail">{% endif %}</p>
+          <p>image2: {% if place_photo.image2 %}<img src="{{ place_photo.image2.url }}" class="img-thumbnail">{% endif %}</p>
+          <p>image3: {% if place_photo.image3 %}<img src="{{ place_photo.image3.url }}" class="img-thumbnail">{% endif %}</p>
+          <p>image4: {% if place_photo.image4 %}<img src="{{ place_photo.image4.url }}" class="img-thumbnail">{% endif %}</p>
+        </div>
+        {% endfor %}
         <h1></h1>
         <p class="fs-5 col-md-8"></p>
 
