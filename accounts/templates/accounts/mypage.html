@@ -1,210 +1,184 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>マイページ</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
 
-    <!-- CSSの設定ファイル -->
-    <link rel="stylesheet" href="" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>マイページ</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="… "
+    crossorigin="anonymous">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="… "
+    crossorigin="anonymous">
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-  </head>
+  <!-- CSSの設定ファイル -->
+  <link rel="stylesheet" href="" />
 
-  <body>
-    <nav class="navbar navbar-dark bg-success sticky-top">
-      <div class="navbar-nav d-flex flex-row">
-        <a class="nav-link mx-4" href="{% url 'list-app' %}">TOP</a>
-      </div>
-      <div class="navbar-nav d-flex flex-row">
-        {% if request.user.is_authenticated %}
-        <a class="nav-link mx-3" href="{% url 'accounts:favorite' %}"
-          >お気に入り</a
-        >
-        <a class="nav-link mx-3" href="{% url 'accounts:mypage' %}"
-          >マイページ</a
-        >
-        <a class="nav-link mx-3" href="{% url 'accounts:reserve' %}"
-          >予約一覧</a
-        >
-        <a class="nav-link mx-3" href="{% url 'accounts:logout' %}"
-          >ログアウト</a
-        >
-        {% else %}
-        <a class="nav-link mx-3" href="{% url 'accounts:signup' %}">会員登録</a>
-        <a class="nav-link mx-3" href="{% url 'accounts:login' %}">ログイン</a>
-        {% endif %}
-      </div>
-    </nav>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <div class="col-lg-8 mx-auto p-4 py-md-5">
-      <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-        <a
-          href="/"
-          class="d-flex align-items-center text-dark text-decoration-none"
-        >
-          <span class="fs-2">マイページ</span>
-        </a>
-      </header>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+</head>
 
-      <main>
-        <h1></h1>
-        <p class="fs-5 col-md-8"></p>
-
-        <div class="d-grid gap-2 col-8 mx-auto">
-          <a
-            href="{% url 'accounts:favorite' %}"
-            class="btn btn-primary"
-            type="button"
-            >お気に入り</a
-          >
-          <a
-            href="{% url 'accounts:searched' %}"
-            class="btn btn-primary"
-            type="button"
-            >最近検索した条件</a
-          >
-          <a href="{% url 'accounts:reserve' %}" class="btn btn-primary" type="button">予約一覧</a>
-        </div>
-
-        <hr class="col-3 col-md-12 mb-5" />
-
-        <div class="row g-5">
-          <div class="col-md-6">
-            <h2>スタータープロジェクト</h2>
-            <p>
-              スターターテンプレートを超える準備ができたら、新しいGitHubリポジトリにすばやく複製できるこれらのオープンソースプロジェクトを確認すること。
-            </p>
-            <ul class="icon-list ps-0">
-              <li class="d-flex align-items-start mb-1">
-                <a
-                  href="https://github.com/twbs/bootstrap-npm-starter"
-                  rel="noopener"
-                  target="_blank"
-                  >Bootstrap npm スターター</a
-                >
-              </li>
-              <li class="text-muted d-flex align-items-start mb-1">
-                <a
-                  href="https://github.com/twbs/examples/tree/main/webpack"
-                  target="_blank"
-                  rel="noopener"
-                  >Bootstrap webpack スターター</a
-                >
-              </li>
-              <li class="text-muted d-flex align-items-start mb-1">
-                <a
-                  href="https://github.com/twbs/examples/tree/main/parcel"
-                  target="_blank"
-                  rel="noopener"
-                  >Bootstrap Parcel スターター</a
-                >
-              </li>
-              <li class="text-muted d-flex align-items-start mb-1">
-                <a
-                  href="https://github.com/twbs/examples/tree/main/vite"
-                  target="_blank"
-                  rel="noopener"
-                  >Bootstrap Vite スターター</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-md-6">
-            <h2>ガイド</h2>
-            <p>
-              Bootstrapの使用や貢献に関する詳細な手順とドキュメントを熟読すること。
-            </p>
-            <ul class="icon-list ps-0">
-              <li class="d-flex align-items-start mb-1">
-                <a
-                  href="../getting-started/introduction"
-                  rel="noopener"
-                  target="_blank"
-                  >Bootstrapクイックスタートガイド</a
-                >
-              </li>
-              <li class="d-flex align-items-start mb-1">
-                <a
-                  href="../getting-started/webpack"
-                  rel="noopener"
-                  target="_blank"
-                  >Bootstrap webpackガイド</a
-                >
-              </li>
-              <li class="d-flex align-items-start mb-1">
-                <a
-                  href="../getting-started/parcel"
-                  rel="noopener"
-                  target="_blank"
-                  >Bootstrap Parcelガイド</a
-                >
-              </li>
-              <li class="d-flex align-items-start mb-1">
-                <a href="../getting-started/vite" rel="noopener" target="_blank"
-                  >Bootstrap Viteガイド</a
-                >
-              </li>
-              <li class="d-flex align-items-start mb-1">
-                <a
-                  href="../getting-started/contribute"
-                  rel="noopener"
-                  target="_blank"
-                  >Bootstrapへの貢献</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </main>
-      <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#!" aria-label="Previous" tabindex="-1">
-              <span aria-hidden="true">&laquo;</span></a
-            >
-          </li>
-          <li class="page-item active">
-            <a class="page-link" href="{% url 'accounts:mypage'%}">
-              1 <span class="sr-only"></span
-            ></a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="">2</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#!">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#!" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      <footer class="pt-5 my-5 text-muted border-top"></footer>
+<body>
+  <nav class="navbar navbar-dark bg-success sticky-top">
+    <div class="navbar-nav d-flex flex-row">
+      <a class="nav-link mx-4" href="{% url 'list-app' %}">TOP</a>
     </div>
+    <div class="navbar-nav d-flex flex-row">
+      {% if request.user.is_authenticated %}
+      <a class="nav-link mx-3" href="{% url 'accounts:favorite' %}">お気に入り</a>
+      <a class="nav-link mx-3" href="{% url 'accounts:mypage' %}">マイページ</a>
+      <a class="nav-link mx-3" href="{% url 'accounts:reserve' %}">予約一覧</a>
+      <a class="nav-link mx-3" href="{% url 'accounts:logout' %}">ログアウト</a>
+      {% else %}
+      <a class="nav-link mx-3" href="{% url 'accounts:signup' %}">会員登録</a>
+      <a class="nav-link mx-3" href="{% url 'accounts:login' %}">ログイン</a>
+      {% endif %}
+    </div>
+  </nav>
+  <div class="col-lg-8 mx-auto p-4 py-md-5">
+    <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-2">マイページ</span>
+      </a>
+    </header>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"
-    ></script>
-    //JavaScriptプラグインの設定など
-  </body>
+
+    <div class="d-grid gap-2 col-8 mx-auto">
+      <a href="{% url 'accounts:favorite' %}" class="btn btn-primary" type="button">お気に入り</a>
+      <a href="{% url 'accounts:searched' %}" class="btn btn-primary" type="button">最近検索した条件</a>
+      <a href="{% url 'accounts:reserve' %}" class="btn btn-primary" type="button">予約一覧</a>
+    </div>
+    <h1></h1>
+    <p class="fs-5 col-md-8"></p>
+
+
+
+
+
+    <main>h2>adminで追加した写真</h2>
+      {% for place_photo in place_photo_list %}
+      <div class="mb-3">
+        <p>name: {{ place_photo.place.name }}</p>
+        <p>image1: {% if place_photo.image1 %}<img src="{{ place_photo.image1.url }}" class="img-thumbnail">{% endif %}
+        </p>
+        <p>image2: {% if place_photo.image2 %}<img src="{{ place_photo.image2.url }}" class="img-thumbnail">{% endif %}
+        </p>
+        <p>image3: {% if place_photo.image3 %}<img src="{{ place_photo.image3.url }}" class="img-thumbnail">{% endif %}
+        </p>
+        <p>image4: {% if place_photo.image4 %}<img src="{{ place_photo.image4.url }}" class="img-thumbnail">{% endif %}
+        </p>
+      </div>
+      {% endfor %}
+      <h1></h1>
+      <p class="fs-5 col-md-8"></p>
+
+
+      <hr class="col-3 col-md-12 mb-5" />
+
+      <div class="row g-5">
+        <div class="col-md-6">
+          <h2>スタータープロジェクト</h2>
+          <p>
+            スターターテンプレートを超える準備ができたら、新しいGitHubリポジトリにすばやく複製できるこれらのオープンソースプロジェクトを確認すること。
+          </p>
+          <ul class="icon-list ps-0">
+            <li class="d-flex align-items-start mb-1">
+              <a href="https://github.com/twbs/bootstrap-npm-starter" rel="noopener" target="_blank">Bootstrap npm
+                スターター</a>
+            </li>
+            <li class="text-muted d-flex align-items-start mb-1">
+              <a href="https://github.com/twbs/examples/tree/main/webpack" target="_blank" rel="noopener">Bootstrap
+                webpack スターター</a>
+            </li>
+            <li class="text-muted d-flex align-items-start mb-1">
+              <a href="https://github.com/twbs/examples/tree/main/parcel" target="_blank" rel="noopener">Bootstrap
+                Parcel スターター</a>
+            </li>
+            <li class="text-muted d-flex align-items-start mb-1">
+              <a href="https://github.com/twbs/examples/tree/main/vite" target="_blank" rel="noopener">Bootstrap Vite
+                スターター</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-6">
+          <h2>ガイド</h2>
+          <p>
+            Bootstrapの使用や貢献に関する詳細な手順とドキュメントを熟読すること。
+          </p>
+          <ul class="icon-list ps-0">
+            <li class="d-flex align-items-start mb-1">
+              <a href="../getting-started/introduction" rel="noopener" target="_blank">Bootstrapクイックスタートガイド</a>
+            </li>
+            <li class="d-flex align-items-start mb-1">
+              <a href="../getting-started/webpack" rel="noopener" target="_blank">Bootstrap webpackガイド</a>
+            </li>
+            <li class="d-flex align-items-start mb-1">
+              <a href="../getting-started/parcel" rel="noopener" target="_blank">Bootstrap Parcelガイド</a>
+            </li>
+            <li class="d-flex align-items-start mb-1">
+              <a href="../getting-started/vite" rel="noopener" target="_blank">Bootstrap Viteガイド</a>
+            </li>
+            <li class="d-flex align-items-start mb-1">
+              <a href="../getting-started/contribute" rel="noopener" target="_blank">Bootstrapへの貢献</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <footer class="pt-5 my-5 text-muted border-top"></footer>
+  </div>
+  <h1>ページネーション確認ページ</h1>
+  {% for page in pages %}
+  <p>{{ page.title }} : {{ page.text }}</p>
+  {% endfor %}
+  {% if pages.has_other_pages %}
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {% if pages.has_previous %}
+      <li><a class="page-link text-primary d-inline-block" href="?page={{ pages.previous_page_number }}">
+          <<< /a>
+      </li>
+      {% else %}
+      <li class="disabled">
+        <div class="page-link text-secondary d-inline-block disabled" href="#">
+          <<< /div>
+      </li>
+      {% endif %}
+
+      {% for page_num in pages.paginator.page_range %}
+      {% if page_num %}
+      {% if page_num == pages.number %}
+      <li class="disabled">
+        <div class="page-link text-secondary d-inline-block disabled" href="#">{{ page_num }}</div>
+      </li>
+      {% else %}
+      <li><a class="page-link text-primary d-inline-block" href="?page={{ page_num }}">{{ page_num }}</a></li>
+      {% endif %}
+      {% else %}
+      <li class="disabled"><a class="page-link text-secondary d-inline-block text-muted" href="#">・・・</a></li>
+      {% endif %}
+      {% endfor %}
+
+      {% if pages.has_next %}
+      <li><a class="page-link text-primary d-inline-block" href="?page={{ pages.next_page_number }}">>></a></li>
+      {% else %}
+      <li class="disabled">
+        <div class="page-link text-secondary d-inline-block disabled" href="#">>></div>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  //JavaScriptプラグインの設定など
+</body>
+
 </html>

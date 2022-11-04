@@ -1,497 +1,363 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>お気に入り</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>アルバム</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-    />
-  </head>
+  <title>お気に入り</title>
 
-  <body>
-    <nav class="navbar navbar-dark bg-success sticky-top">
-      <div class="navbar-nav d-flex flex-row">
-        <a class="nav-link mx-4" href="{% url 'list-app' %}">TOP</a>
-      </div>
-      <div class="navbar-nav d-flex flex-row">
-        {% if request.user.is_authenticated %}
-        <a class="nav-link mx-3" href="{% url 'accounts:favorite' %}"
-          >お気に入り</a
-        >
-        <a class="nav-link mx-3" href="{% url 'accounts:mypage' %}"
-          >マイページ</a
-        >
-        <a class="nav-link mx-3" href="{% url 'accounts:reserve' %}">予約一覧</a>
-        <a class="nav-link mx-3" href="{% url 'accounts:logout' %}"
-          >ログアウト</a
-        >
-        {% else %}
-        <a class="nav-link mx-3" href="{% url 'accounts:signup' %}">会員登録</a>
-        <a class="nav-link mx-3" href="{% url 'accounts:login' %}">ログイン</a>
-        {% endif %}
-      </div>
-    </nav>
-    <header>
-      <div class="collapse bg-dark" id="Navbar">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white"></h4>
-              <p class="text-muted"></p>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white"></h4>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Twitterでフォロー</a></li>
-                <li><a href="#" class="text-white">Facebookでいいね</a></li>
-                <li><a href="#" class="text-white">メールを送信</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>アルバム</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" />
+</head>
 
-    <main>
-      <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">お気に入り</h1>
-            <p class="lead text-muted">
-              短くて、その下のコレクション、そのコンテンツ、クリエイターなどを指し示すものではない。短くて甘いですが、あまりにも短くはないので、人々はそれを完全にスキップしない。
-            </p>
-            <p>
-              <a href="#" class="btn btn-primary my-2"
-                >アクションへの主な呼びかけ</a
-              >
-              <a href="#" class="btn btn-secondary my-2">二次的なアクション</a>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <title>カード画像のキャプション</title>
-                  <rect fill="#55595c" width="100%" height="100%" />
-                  <text fill="#eceeef" dy=".3em" x="50%" y="50%">
-                    サムネイル
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">
-                    これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        見る
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        編集
-                      </button>
-                    </div>
-                    <small class="text-muted">9 分前</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <title>カード画像のキャプション</title>
-                  <rect fill="#55595c" width="100%" height="100%" />
-                  <text fill="#eceeef" dy=".3em" x="50%" y="50%">
-                    サムネイル
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">
-                    これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        見る
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        編集
-                      </button>
-                    </div>
-                    <small class="text-muted">9 分前</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <title>カード画像のキャプション</title>
-                  <rect fill="#55595c" width="100%" height="100%" />
-                  <text fill="#eceeef" dy=".3em" x="50%" y="50%">
-                    サムネイル
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">
-                    これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        見る
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        編集
-                      </button>
-                    </div>
-                    <small class="text-muted">9 分前</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <title>カード画像のキャプション</title>
-                  <rect fill="#55595c" width="100%" height="100%" />
-                  <text fill="#eceeef" dy=".3em" x="50%" y="50%">
-                    サムネイル
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">
-                    これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        見る
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        編集
-                      </button>
-                    </div>
-                    <small class="text-muted">9 分前</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <title>カード画像のキャプション</title>
-                  <rect fill="#55595c" width="100%" height="100%" />
-                  <text fill="#eceeef" dy=".3em" x="50%" y="50%">
-                    サムネイル
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">
-                    これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        見る
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        編集
-                      </button>
-                    </div>
-                    <small class="text-muted">9 分前</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <title>カード画像のキャプション</title>
-                  <rect fill="#55595c" width="100%" height="100%" />
-                  <text fill="#eceeef" dy=".3em" x="50%" y="50%">
-                    サムネイル
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">
-                    これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        見る
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        編集
-                      </button>
-                    </div>
-                    <small class="text-muted">9 分前</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <title>カード画像のキャプション</title>
-                  <rect fill="#55595c" width="100%" height="100%" />
-                  <text fill="#eceeef" dy=".3em" x="50%" y="50%">
-                    サムネイル
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">
-                    これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        見る
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        編集
-                      </button>
-                    </div>
-                    <small class="text-muted">9 分前</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <title>カード画像のキャプション</title>
-                  <rect fill="#55595c" width="100%" height="100%" />
-                  <text fill="#eceeef" dy=".3em" x="50%" y="50%">
-                    サムネイル
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">
-                    これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        見る
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        編集
-                      </button>
-                    </div>
-                    <small class="text-muted">9 分前</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg
-                  class="bd-placeholder-img card-img-top"
-                  width="100%"
-                  height="225"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <title>カード画像のキャプション</title>
-                  <rect fill="#55595c" width="100%" height="100%" />
-                  <text fill="#eceeef" dy=".3em" x="50%" y="50%">
-                    サムネイル
-                  </text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">
-                    これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        見る
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        編集
-                      </button>
-                    </div>
-                    <small class="text-muted">9 分前</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.album  -->
-    </main>
-
-    <footer class="text-muted py-5">
+<body>
+  <nav class="navbar navbar-dark bg-success sticky-top">
+    <div class="navbar-nav d-flex flex-row">
+      <a class="nav-link mx-4" href="{% url 'list-app' %}">TOP</a>
+    </div>
+    <div class="navbar-nav d-flex flex-row">
+      {% if request.user.is_authenticated %}
+      <a class="nav-link mx-3" href="{% url 'accounts:favorite' %}">お気に入り</a>
+      <a class="nav-link mx-3" href="{% url 'accounts:mypage' %}">マイページ</a>
+      <a class="nav-link mx-3" href="{% url 'accounts:reserve' %}">予約一覧</a>
+      <a class="nav-link mx-3" href="{% url 'accounts:logout' %}">ログアウト</a>
+      {% else %}
+      <a class="nav-link mx-3" href="{% url 'accounts:signup' %}">会員登録</a>
+      <a class="nav-link mx-3" href="{% url 'accounts:login' %}">ログイン</a>
+      {% endif %}
+    </div>
+  </nav>
+  <header>
+    <div class="collapse bg-dark" id="Navbar">
       <div class="container">
-        <p class="float-end mb-1">
-          <a href="#">トップに戻る</a>
-        </p>
-        <p class="mb-1">
-          このアルバムの実例は &copy; Bootstrap
-          だが、ダウンロードして自分でカスタマイズすること！
-        </p>
-        <p class="mb-0">
-          Bootstrapが初めてなら、<a
-            href="http://getbootstrap.com/"
-            target="_blank"
-            >ホームページ</a
-          >にアクセスするか、<a href="../getting-started/introduction"
-            >スタートガイド</a
-          >を読むように。
-        </p>
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white"></h4>
+            <p class="text-muted"></p>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white"></h4>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white">Twitterでフォロー</a></li>
+              <li><a href="#" class="text-white">Facebookでいいね</a></li>
+              <li><a href="#" class="text-white">メールを送信</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </footer>
+    </div>
+  </header>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"
-    ></script>
-    //JavaScriptプラグインの設定など
-  </body>
+  <main>
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">送信</button>
+    </form>
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">お気に入り</h1>
+          <p class="lead text-muted">
+            短くて、その下のコレクション、そのコンテンツ、クリエイターなどを指し示すものではない。短くて甘いですが、あまりにも短くはないので、人々はそれを完全にスキップしない。
+          </p>
+          <p>
+            <a href="#" class="btn btn-primary my-2">アクションへの主な呼びかけ</a>
+            <a href="#" class="btn btn-secondary my-2">二次的なアクション</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice">
+                <title>カード画像のキャプション</title>
+                <rect fill="#55595c" width="100%" height="100%" />
+                <text fill="#eceeef" dy=".3em" x="50%" y="50%">
+
+                </text>
+              </svg>
+              <div class="card-body">
+                <p class="card-text">
+                  これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      見る
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      編集
+                    </button>
+                  </div>
+                  <small class="text-muted">9 分前</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice">
+                <title>カード画像のキャプション</title>
+                <rect fill="#55595c" width="100%" height="100%" />
+                <text fill="#eceeef" dy=".3em" x="50%" y="50%">
+                  サムネイル
+                </text>
+              </svg>
+              <div class="card-body">
+                <p class="card-text">
+                  これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      見る
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      編集
+                    </button>
+                  </div>
+                  <small class="text-muted">9 分前</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice">
+                <title>カード画像のキャプション</title>
+                <rect fill="#55595c" width="100%" height="100%" />
+                <text fill="#eceeef" dy=".3em" x="50%" y="50%">
+                  サムネイル
+                </text>
+              </svg>
+              <div class="card-body">
+                <p class="card-text">
+                  これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      見る
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      編集
+                    </button>
+                  </div>
+                  <small class="text-muted">9 分前</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice">
+                <title>カード画像のキャプション</title>
+                <rect fill="#55595c" width="100%" height="100%" />
+                <text fill="#eceeef" dy=".3em" x="50%" y="50%">
+                  サムネイル
+                </text>
+              </svg>
+              <div class="card-body">
+                <p class="card-text">
+                  これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      見る
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      編集
+                    </button>
+                  </div>
+                  <small class="text-muted">9 分前</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice">
+                <title>カード画像のキャプション</title>
+                <rect fill="#55595c" width="100%" height="100%" />
+                <text fill="#eceeef" dy=".3em" x="50%" y="50%">
+                  サムネイル
+                </text>
+              </svg>
+              <div class="card-body">
+                <p class="card-text">
+                  これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      見る
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      編集
+                    </button>
+                  </div>
+                  <small class="text-muted">9 分前</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice">
+                <title>カード画像のキャプション</title>
+                <rect fill="#55595c" width="100%" height="100%" />
+                <text fill="#eceeef" dy=".3em" x="50%" y="50%">
+                  サムネイル
+                </text>
+              </svg>
+              <div class="card-body">
+                <p class="card-text">
+                  これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      見る
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      編集
+                    </button>
+                  </div>
+                  <small class="text-muted">9 分前</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice">
+                <title>カード画像のキャプション</title>
+                <rect fill="#55595c" width="100%" height="100%" />
+                <text fill="#eceeef" dy=".3em" x="50%" y="50%">
+                  サムネイル
+                </text>
+              </svg>
+              <div class="card-body">
+                <p class="card-text">
+                  これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      見る
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      編集
+                    </button>
+                  </div>
+                  <small class="text-muted">9 分前</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice">
+                <title>カード画像のキャプション</title>
+                <rect fill="#55595c" width="100%" height="100%" />
+                <text fill="#eceeef" dy=".3em" x="50%" y="50%">
+                  サムネイル
+                </text>
+              </svg>
+              <div class="card-body">
+                <p class="card-text">
+                  これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      見る
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      編集
+                    </button>
+                  </div>
+                  <small class="text-muted">9 分前</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice">
+                <title>カード画像のキャプション</title>
+                <rect fill="#55595c" width="100%" height="100%" />
+                <text fill="#eceeef" dy=".3em" x="50%" y="50%">
+                  サムネイル
+                </text>
+              </svg>
+              <div class="card-body">
+                <p class="card-text">
+                  これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカード。このコンテンツはもう少し長くなる。
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      見る
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      編集
+                    </button>
+                  </div>
+                  <small class="text-muted">9 分前</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.album  -->
+  </main>
+
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">トップに戻る</a>
+      </p>
+      <p class="mb-1">
+        このアルバムの実例は &copy; Bootstrap
+        だが、ダウンロードして自分でカスタマイズすること！
+      </p>
+      <p class="mb-0">
+        Bootstrapが初めてなら、<a href="http://getbootstrap.com/" target="_blank">ホームページ</a>にアクセスするか、<a
+          href="../getting-started/introduction">スタートガイド</a>を読むように。
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  //JavaScriptプラグインの設定など
+</body>
+
 </html>

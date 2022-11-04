@@ -33,3 +33,9 @@ class UpdateAppView(UpdateView):
     fields = ('title', 'text', 'category')
     template_name = 'app/app_update.html'
     success_url = reverse_lazy('list-app')
+
+
+
+
+
+

@@ -3,6 +3,7 @@ from app.models import Account
 
 
 
+
 class SignupForm(UserCreationForm):
     class Meta:
         model = Account
