@@ -59,7 +59,7 @@
 
 
     <main>h2>adminで追加した写真</h2>
-      {% for place_photo in place_photo_list %}
+      {% for place_photo in pages %}
       <div class="mb-3">
         <p>name: {{ place_photo.place.name }}</p>
         <p>image1: {% if place_photo.image1 %}<img src="{{ place_photo.image1.url }}" class="img-thumbnail">{% endif %}
@@ -133,20 +133,18 @@
     <footer class="pt-5 my-5 text-muted border-top"></footer>
   </div>
   <h1>ページネーション確認ページ</h1>
-  {% for page in pages %}
-  <p>{{ page.title }} : {{ page.text }}</p>
-  {% endfor %}
+
   {% if pages.has_other_pages %}
   <nav aria-label="Page navigation example">
     <ul class="pagination">
       {% if pages.has_previous %}
       <li><a class="page-link text-primary d-inline-block" href="?page={{ pages.previous_page_number }}">
-          <<< /a>
+          &laquo;</a>
       </li>
       {% else %}
       <li class="disabled">
         <div class="page-link text-secondary d-inline-block disabled" href="#">
-          <<< /div>
+          &laquo;</div>
       </li>
       {% endif %}
 
@@ -165,10 +163,10 @@
       {% endfor %}
 
       {% if pages.has_next %}
-      <li><a class="page-link text-primary d-inline-block" href="?page={{ pages.next_page_number }}">>></a></li>
+      <li><a class="page-link text-primary d-inline-block" href="?page={{ pages.next_page_number }}">&raquo;</a></li>
       {% else %}
       <li class="disabled">
-        <div class="page-link text-secondary d-inline-block disabled" href="#">>></div>
+        <div class="page-link text-secondary d-inline-block disabled" href="#">&raquo;</div>
       </li>
       {% endif %}
     </ul>

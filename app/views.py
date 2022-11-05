@@ -9,6 +9,10 @@ from django.views.generic import (
     )
 from  .models import App
 
+def current_location(request):
+    return render(request,'app/current_location.html')
+
+
 class ListAppView(ListView):
     template_name = 'app/app_list.html'
     model = App

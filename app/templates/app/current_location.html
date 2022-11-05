@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+    <title> TOP</title>
+    <style>
+        #map_container {
+            clear: both;
+            width: 90%;
+            padding: 4px;
+            border: 1px solid #CCC;
+        }
+
+        #map_canvas {
+            /* 高さ（と幅）を指定しないと地図は表示されない */
+            width: 100%;
+            height: 500px;
+        }
+
+        #url,
+        #zoom {
+            display: none;
+            /* 非表示 */
+        }
+
+        /* 情報ウィンドウ（マーカーをクリックすると表示される領域）内 */
+        #map_content {
+            width: 250px;
+            height: 70px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-success sticky-top">
+        <div class="navbar-nav d-flex flex-row">
+            <a class="nav-link mx-4" href="{% url 'list-app' %}">TOP</a>
+        </div>
+        <div class="navbar-nav d-flex flex-row">
+            {% if request.user.is_authenticated %}
+            <a class="nav-link mx-3" href="{% url 'accounts:favorite' %}">お気に入り</a>
+            <a class="nav-link mx-3" href="{% url 'accounts:mypage' %}">マイページ</a>
+            <a class="nav-link mx-3" href="{% url 'accounts:reserve' %}">予約一覧</a>
+            <a class="nav-link mx-3" href="{% url 'accounts:logout' %}">ログアウト</a>
+            {% else %}
+            <a class="nav-link mx-3" href="{% url 'accounts:signup' %}">会員登録</a>
+            <a class="nav-link mx-3" href="{% url 'accounts:login' %}">ログイン</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div id="gmap" style="height:400px;width:600px"></div> <!-- 地図を表示する領域 -->
+
+    <script>
+        function initMap() {
+            var target = document.getElementById('gmap');
+            var tokyo = { lat: 35.681167, lng: 139.767052 };  //東京駅の緯度経度
+            var map = new google.maps.Map(document.getElementById('gmap'), {
+                center: tokyo,
+                zoom: 16
+            });
+
+            //情報ウィンドウのインスタンスの生成（後でマーカーに紐付け）
+            var infowindow = new google.maps.InfoWindow();
+
+            //PlacesService のインスタンスの生成（引数に map を指定）
+            var service = new google.maps.places.PlacesService(map);
+
+            if (!navigator.geolocation) {
+                //情報ウィンドウの位置をマップの中心位置に指定
+                infowindow.setPosition(map.getCenter());
+                //情報ウィンドウのコンテンツを設定
+                infowindow.setContent('Geolocation に対応していません。');
+                //情報ウィンドウを表示
+                infowindow.open(map);
+            }
+
+            //ブラウザが対応している場合、position にユーザーの位置情報が入る
+            navigator.geolocation.getCurrentPosition(function (position) {
+                //position から緯度経度（ユーザーの位置）のオブジェクトを作成し変数に代入
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                //情報ウィンドウに現在位置を指定
+                infowindow.setPosition(pos);
+                //情報ウィンドウのコンテンツを設定
+                infowindow.setContent('現在位置を取得しました。');
+                //情報ウィンドウを表示
+                infowindow.open(map);
+                //マップの中心位置を指定
+                map.setCenter(pos);
+
+                //種類（タイプ）やキーワードをもとに施設を検索（プレイス検索）するメソッド nearbySearch()
+                service.nearbySearch({
+                    location: pos,  //検索するロケーション
+                    radius: 500,  //検索する半径（メートル）
+                    name: 'レストラン'  //タイプで検索。文字列またはその配列で指定
+                    //キーワードで検索する場合は name:'レストラン' や ['レストラン','中華'] のように指定
+
+                }, callback);  //コールバック関数（callback）は別途定義
+
+                //コールバック関数には results, status が渡されるので、status により条件分岐
+                function callback(results, status) {
+                    // status は以下のような定数で判定（OK の場合は results が配列で返ってきます）
+                    if (status === google.maps.places.PlacesServiceStatus.OK) {
+                        //results の数だけ for 文で繰り返し処理
+                        for (var i = 0; i < results.length; i++) {
+                            //createMarker() はマーカーを生成する関数（別途定義）
+                            createMarker(results[i]);
+                        }
+                    }
+                }
+            }, function () {  //位置情報の取得をユーザーがブロックした場合のコールバック
+                //情報ウィンドウの位置をマップの中心位置に指定
+                infowindow.setPosition(map.getCenter());
+                //情報ウィンドウのコンテンツを設定
+                infowindow.setContent('Error: Geolocation が無効です。');
+                //情報ウィンドウを表示
+                infowindow.open(map);
+            });
+
+            //マーカーを生成する関数（引数には検索結果の配列 results[i] が入ってきます）
+            function createMarker(place) {
+                //var placeLoc = place.geometry.location; 
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location  //results[i].geometry.location
+                });
+
+                //マーカーにイベントリスナを設定
+                marker.addListener('click', function () {
+                    infowindow.setContent(place.name);  //results[i].name
+                    infowindow.open(map, this);
+                });
+            }
+        }
+
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUWZUrjmfWuLfrUhxAMaP3RVzVt3Oo2AE&callback=initMap&libraries=places"
+        async defer></script>
+    <!-- YOUR_API_KEYの部分は取得した APIキーで置き換えます。また Placesを使用する場合は最後に「&libraries=places」を追加する必要があります。 -->
+</body>
+
+</html>
