@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import json
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -7,10 +8,12 @@ from django.views.generic import (
     DeleteView,
     UpdateView,
     )
-from  .models import App
+from .models import App, Place
 
 def current_location(request):
-    return render(request,'app/current_location.html')
+    data = {Place.objects.all()}
+    seat_json = json.dumps(data)
+    return render(request,'app/current_location.html',{'seat_json': seat_json})
 
 
 class ListAppView(ListView):

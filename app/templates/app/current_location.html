@@ -41,6 +41,7 @@
 </head>
 
 <body>
+
     <nav class="navbar navbar-dark bg-success sticky-top">
         <div class="navbar-nav d-flex flex-row">
             <a class="nav-link mx-4" href="{% url 'list-app' %}">TOP</a>
@@ -57,7 +58,7 @@
             {% endif %}
         </div>
     </nav>
-
+    <h1>現在地から</h1>
     <div id="gmap" style="height:400px;width:600px"></div> <!-- 地図を表示する領域 -->
 
     <script>
@@ -104,7 +105,7 @@
                 service.nearbySearch({
                     location: pos,  //検索するロケーション
                     radius: 500,  //検索する半径（メートル）
-                    name: 'レストラン'  //タイプで検索。文字列またはその配列で指定
+                    name: 'レストラン',//タイプで検索。文字列またはその配列で指定
                     //キーワードで検索する場合は name:'レストラン' や ['レストラン','中華'] のように指定
 
                 }, callback);  //コールバック関数（callback）は別途定義
