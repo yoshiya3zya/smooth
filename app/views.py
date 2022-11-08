@@ -11,9 +11,9 @@ from django.views.generic import (
 from .models import App, Place
 
 def current_location(request):
-    data = {Place.objects.all()}
-    seat_json = json.dumps(data)
-    return render(request,'app/current_location.html',{'seat_json': seat_json})
+    place_queryset = Place.objects.all()
+    place_json = json.dumps(list(place_queryset.values()))
+    return render(request,'app/current_location.html',{'place_json': place_json})
 
 
 class ListAppView(ListView):

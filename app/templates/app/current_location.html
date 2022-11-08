@@ -144,6 +144,12 @@
                     infowindow.open(map, this);
                 });
             }
+
+            const places = JSON.parse('{{ place_json|safe }}');
+            for (const key in places) {
+                console.log(places[key]);
+                // ここでGoogleMapに表示処理を入れる
+            }
         }
 
     </script>
