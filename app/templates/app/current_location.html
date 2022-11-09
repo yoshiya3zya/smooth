@@ -144,11 +144,17 @@
                     infowindow.open(map, this);
                 });
             }
+
+            const places = JSON.parse('{{ place_json|safe }}');
+            for (const key in places) {
+                console.log(places[key]);
+                // ここでGoogleMapに表示処理を入れる
+            }
         }
 
     </script>
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUWZUrjmfWuLfrUhxAMaP3RVzVt3Oo2AE&callback=initMap&libraries=places"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDax7Rvk6BJ7Yum-JeFHbY6D5uMJ9c9ymc&callback=initMap&libraries=places"
         async defer></script>
     <!-- YOUR_API_KEYの部分は取得した APIキーで置き換えます。また Placesを使用する場合は最後に「&libraries=places」を追加する必要があります。 -->
 </body>
