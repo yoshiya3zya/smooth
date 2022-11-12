@@ -101,14 +101,9 @@
                 //マップの中心位置を指定
                 map.setCenter(pos);
 
-                //種類（タイプ）やキーワードをもとに施設を検索（プレイス検索）するメソッド nearbySearch()
-                service.nearbySearch({
-                    location: pos,  //検索するロケーション
-                    radius: 500,  //検索する半径（メートル）
-                    name: 'レストラン',//タイプで検索。文字列またはその配列で指定
-                    //キーワードで検索する場合は name:'レストラン' や ['レストラン','中華'] のように指定
 
-                }, callback);  //コールバック関数（callback）は別途定義
+
+
 
                 //コールバック関数には results, status が渡されるので、status により条件分岐
                 function callback(results, status) {
@@ -149,7 +144,11 @@
             for (const key in places) {
                 console.log(places[key]);
                 // ここでGoogleMapに表示処理を入れる
+
             }
+            https://maps.google.com/maps/api/geocode/json
+    ? address = 住所
+                & sensor=false
         }
 
     </script>
