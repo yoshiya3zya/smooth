@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import json
+from .google_maps_api import geocode
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -9,6 +10,7 @@ from django.views.generic import (
     UpdateView,
     )
 from .models import App, Place
+
 
 def current_location(request):
     place_queryset = Place.objects.all()

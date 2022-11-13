@@ -139,16 +139,26 @@
                     infowindow.open(map, this);
                 });
             }
+            var geocoder = new google.maps.Geocoder();
 
             const places = JSON.parse('{{ place_json|safe }}');
             for (const key in places) {
+                var pos = {
+                    lat: places[key].lat,
+                    lng: places[key].lng
+                };
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: pos
+                });
+                marker.addListener('click', function () {
+                    infowindow.setContent(places[key].name);  //results[i].name
+                    infowindow.open(map, this);
+                });
                 console.log(places[key]);
                 // ここでGoogleMapに表示処理を入れる
 
             }
-            https://maps.google.com/maps/api/geocode/json
-    ? address = 住所
-                & sensor=false
         }
 
     </script>

@@ -80,6 +80,8 @@ class Place(models.Model):
     address = models.CharField(max_length=128)
     access = models.CharField(max_length=128)
     floorplan = models.CharField(max_length=128)
+    lat = models.FloatField(default=None, null=True)
+    lng = models.FloatField(default=None, null=True)
     
     def __str__(self):
         return self.name
