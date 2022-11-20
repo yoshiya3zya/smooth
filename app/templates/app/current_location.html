@@ -152,14 +152,20 @@
                     position: pos
                 });
                 marker.addListener('click', function () {
-                    infowindow.setContent(places[key].name);  //results[i].name
+                    var content = '<a href="/app/' + places[key].id + '/detail/">' + places[key].name + '</a>';
+                    //var content = `<a href="/app/${places[key].id}/detail/">${places[key].name}</a>`;
+                    infowindow.setContent(content);  //results[i].name
                     infowindow.open(map, this);
                 });
                 console.log(places[key]);
                 // ここでGoogleMapに表示処理を入れる
 
+
+
             }
+
         }
+
 
     </script>
     <script

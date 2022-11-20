@@ -9,13 +9,23 @@ from django.views.generic import (
     DeleteView,
     UpdateView,
     )
-from .models import App, Place
+from .models import App, Place, PlacePhoto
 
 
 def current_location(request):
     place_queryset = Place.objects.all()
+    for item in place_queryset:
+        lat, lng = geocode(item.address)
+        print(item.address,lat, lng)
+        item.lat = lat
+        item.lng = lng
+        item.save()
     place_json = json.dumps(list(place_queryset.values()))
     return render(request,'app/current_location.html',{'place_json': place_json})
+
+def detail(request):
+    place_photo_list = PlacePhoto.objects.all()
+    return render(request,'app/detail.html')
 
 
 class ListAppView(ListView):
@@ -24,7 +34,12 @@ class ListAppView(ListView):
 
 class DetailAppView(DetailView):
     template_name = 'app/app_detail.html'
-    model = App
+    model = Place
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['one_week'] = [1,2,3,4,]
+        return context
 
 class CreateAppView(CreateView):
     template_name = 'app/app_create.html'
