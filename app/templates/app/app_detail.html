@@ -80,16 +80,16 @@
                     <div class="carousel-inner">
                         {% for place_photo in object.placephoto_set.all %}
                         <div class="carousel-item active">
-                            <img src="{{ place_photo.image1.url }}" class="d-block w-100" alt="...">
+                            <img src="{{ place_photo.image1.url }}" class="d-block" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ place_photo.image2.url }}" class="d-block w-100" alt="...">
+                            <img src="{{ place_photo.image2.url }}" class="d-block" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ place_photo.image3.url }}" class="d-block w-100" alt="...">
+                            <img src="{{ place_photo.image3.url }}" class="d-block" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ place_photo.image4.url }}" class="d-block w-100" alt="...">
+                            <img src="{{ place_photo.image4.url }}" class="d-block" alt="...">
                         </div>
                         {% endfor %}
                     </div>
@@ -142,6 +142,20 @@
 
             .wrap .box-b {
                 /*--以下省略--*/
+                
+            }
+
+            .carousel {
+                width: 400px;
+            }
+            .carousel-item {
+                background-color: black;
+            }
+
+            .carousel-item img {
+                margin: 0 auto;
+                width: auto;
+                height: 400px;
             }
         </style>
 
