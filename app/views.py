@@ -1,5 +1,6 @@
 from django.shortcuts import render
-import json
+import json, datetime
+from datetime import date, timedelta, datetime
 from .google_maps_api import geocode
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -35,11 +36,16 @@ class ListAppView(ListView):
 class DetailAppView(DetailView):
     template_name = 'app/app_detail.html'
     model = Place
+    
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['one_week'] = [1,2,3,4,]
+        context['one_week'] = [1,2,3,4,5,6,7]
+        context["new_date"] = date.today()
+        context["tomorrow_date"] = datetime.now() + timedelta(days=1)
         return context
+    
+  
 
 class CreateAppView(CreateView):
     template_name = 'app/app_create.html'
