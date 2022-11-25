@@ -37,12 +37,18 @@ class DetailAppView(DetailView):
     template_name = 'app/app_detail.html'
     model = Place
     
+    
 
     def get_context_data(self, *args, **kwargs):
+        # 日付のリスト生成()
+        date_list = [date.today() + timedelta(days=i) for i in range(7)]
+        # 文字列に変換
+        date_str_list = [d.strftime("%Y年%m月%d日") for d in date_list]
         context = super().get_context_data(*args, **kwargs)
         context['one_week'] = [1,2,3,4,5,6,7]
         context["new_date"] = date.today()
         context["tomorrow_date"] = datetime.now() + timedelta(days=1)
+        context["date_str_list"] = date_str_list
         return context
     
   
