@@ -197,7 +197,7 @@
                             <tbody>
                                 {% for hour in hour_list %}
                                 <tr>
-                                    <th><a href="{% url 'booking_confirmation' %}">◎</a></th>
+                                    <th><a href="{% url 'booking_confirmation' %}?place_id={{ object.id }}&reserve_date={{ date|date:'Ymd' }}{{ hour|date:'Hi' }}">◎</a></th>
                                 </tr>
                                 {% endfor %}
                             </tbody>
