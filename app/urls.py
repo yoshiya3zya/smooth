@@ -12,4 +12,5 @@ urlpatterns = [
     path('app/<int:pk>/update/', views.UpdateAppView.as_view(), name='update-app'),
     path('app/current_location', views.current_location, name='current_location'),
     path('app/detail', views.detail, name='detail'),
+    path('app/booking_confirmation', views.Booking_confirmation, name='booking_confirmation'),
 ]

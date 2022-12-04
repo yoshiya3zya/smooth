@@ -162,11 +162,51 @@
 
 
         <hr>
-        {% for day in one_week %}
-        <p>{{day}}</p>
-        <p>{{date_str_list}}</p>
-        {% endfor %}
+
         <hr>
+        <table class="table  table-bordered">
+            <thead>
+                <tr>
+                    <th>
+
+                    </th>
+                    {% for date in date_list %}
+                    <th class="{% if date|date:'D' == '日' %}sun {% elif date|date:'D' == '土' %}sat{% endif %}">
+                        {{date|date:"d"}}<br>({{date| date:"D"}})
+                    </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        <table>
+                            <tbody>
+                                {% for hour in hour_list %}
+                                <tr>
+                                    <th>{{hour| date:"H:i"}} </th>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </th>
+                    {% for date in date_list %}
+                    <th>
+                        <table>
+                            <tbody>
+                                {% for hour in hour_list %}
+                                <tr>
+                                    <th><a href="{% url 'booking_confirmation' %}">◎</a></th>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </th>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
 
 
     </div>

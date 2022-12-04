@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import json, datetime
+import json, datetime,  calendar, locale
 from datetime import date, timedelta, datetime
 from .google_maps_api import geocode
 from django.urls import reverse_lazy
@@ -11,6 +11,7 @@ from django.views.generic import (
     UpdateView,
     )
 from .models import App, Place, PlacePhoto
+
 
 
 def current_location(request):
@@ -40,15 +41,19 @@ class DetailAppView(DetailView):
     
 
     def get_context_data(self, *args, **kwargs):
+        locale.setlocale(locale.LC_TIME, 'ja_JP.UTF-8')
         # 日付のリスト生成()
-        date_list = [date.today() + timedelta(days=i) for i in range(7)]
+        date_list = [datetime.today() + timedelta(days=i) for i in range(14)]
         # 文字列に変換
-        date_str_list = [d.strftime("%Y年%m月%d日") for d in date_list]
+        hour_list = []
+        for hour in range(24):
+            hour_list.append(datetime(year=datetime.today().year, month=datetime.today().month, day=datetime.today().day, hour=hour))
+        #hour_list = [datetime(hour=hour) for hour in range(24)]
+        date_str_list = [d.strftime("%Y年%m月%d日%A") for d in date_list]
         context = super().get_context_data(*args, **kwargs)
-        context['one_week'] = [1,2,3,4,5,6,7]
-        context["new_date"] = date.today()
-        context["tomorrow_date"] = datetime.now() + timedelta(days=1)
-        context["date_str_list"] = date_str_list
+        context["date_str_list"] = date_str_list 
+        context["date_list"] = date_list
+        context["hour_list"] = hour_list
         return context
     
   
@@ -69,6 +74,11 @@ class UpdateAppView(UpdateView):
     fields = ('title', 'text', 'category')
     template_name = 'app/app_update.html'
     success_url = reverse_lazy('list-app')
+
+def Booking_confirmation(request):
+     return render(request,'app/booking_confirmation.html')
+
+ 
 
 
 
