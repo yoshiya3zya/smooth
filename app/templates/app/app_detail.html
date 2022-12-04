@@ -162,10 +162,45 @@
 
 
         <hr>
-        {% for day in one_week %}
-        <p>{{day}}</p>
-        <p>{{date_str_list}}</p>
-        {% endfor %}
+        <table class="table">
+            <thead>
+                <tr></tr>
+                <tr>
+                    <th></th>
+                    {% for day in date_list %}
+                    <th>{{day|date:"d（D）"}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        <table>
+                            <tbody>
+                                {% for hour in hour_list %}
+                                <tr>
+                                    <th>{{ hour }}</th>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </th>
+                    {% for reserve_date_list in reserve_list %}
+                    <th>
+                        <table>
+                            <tbody>
+                                {% for reserve in reserve_date_list %}
+                                <tr>
+                                    <td>{{ reserve }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </th>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
         <hr>
 
 
