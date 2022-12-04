@@ -70,8 +70,9 @@ class DetailAppView(DetailView):
         for date in date_list:
             reserve_date_list = []
             for hour in hour_list:
+                target = datetime(year=date.year, month=date.month, day=date.day, hour=hour.hour)
                 try:
-                    Reserve.objects.get(place=self.object, start=datetime(year=date.year, month=date.month, day=date.day, hour=hour.hour))
+                    Reserve.objects.get(place=self.object, start__lte=target, end__gt=target)
                     reserve_date_list.append('x')
                 except Reserve.DoesNotExist:
                     reserve_date_list.append('o')
