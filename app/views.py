@@ -76,7 +76,10 @@ class UpdateAppView(UpdateView):
     success_url = reverse_lazy('list-app')
 
 def Booking_confirmation(request):
-     return render(request,'app/booking_confirmation.html')
+    print(request.GET['place_id'], request.GET['reserve_date'])
+    # reserve_date = datetime.strptime(request.GET['reserve_date'], 'YmdHi')
+    place = Place.objects.get(id=request.GET['place_id'])
+    return render(request,'app/booking_confirmation.html', {'place': place})
 
  
 
